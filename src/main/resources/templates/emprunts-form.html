@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(#{nav.emprunts})}"></head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<main class="container pb-5">
+    <h1 class="page-header" th:text="#{action.new}">Nouvelle emprunt</h1>
+    <form th:action="@{/emprunts/save}" th:object="${form}" method="post" class="card card-body">
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.adherent}">Adherent</label>
+            <select class="form-select" th:field="*{adherentPk}">
+                <option th:each="c : ${adherents}" th:value="${c.id}" th:text="${c.noms}"></option>
+            </select>
+            <div class="form-error" th:if="${#fields.hasErrors('adherentPk')}" th:errors="*{adherentPk}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.livre}">Livre</label>
+            <select class="form-select" th:field="*{livrePk}">
+                <option th:each="b : ${livres}" th:value="${b.id}"
+                        th:text="${b.titre + ' (' + b.pages + ' m²)'}"></option>
+            </select>
+            <div class="form-error" th:if="${#fields.hasErrors('livrePk')}" th:errors="*{livrePk}"></div>
+        </div>
+        <div class="d-grid gap-2 d-sm-flex">
+            <button class="btn btn-primary" type="submit" th:text="#{action.save}">Enregistrer</button>
+            <a class="btn btn-secondary" th:href="@{/emprunts}" th:text="#{action.cancel}">Annuler</a>
+        </div>
+    </form>
+</main>
+<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

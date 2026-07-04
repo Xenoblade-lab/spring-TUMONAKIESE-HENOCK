@@ -1,0 +1,217 @@
+:root {
+    --color-primary: #1e3a5f;
+    --color-primary-dark: #142840;
+    --color-accent: #8b2942;
+    --color-accent-light: #c45c72;
+    --color-cream: #f4efe6;
+    --color-cream-dark: #e6ddd0;
+    --color-text: #1a2433;
+    --color-text-muted: #5a6474;
+    --shadow-card: 0 4px 20px rgba(30, 58, 95, 0.12);
+    --shadow-card-hover: 0 8px 30px rgba(30, 58, 95, 0.2);
+    --font-display: 'Libre Baskerville', Georgia, serif;
+    --font-body: 'Source Sans 3', system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--color-cream);
+    color: var(--color-text);
+    font-family: var(--font-body);
+}
+
+h1, h2, .hero-title, .dashboard-title, .navbar-brand {
+    font-family: var(--font-display);
+}
+
+.navbar {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+    box-shadow: 0 2px 12px rgba(30, 58, 95, 0.25);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    transition: color 0.2s, background 0.2s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--color-accent-light) !important;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: 600;
+    color: #fff !important;
+    background-color: rgba(139, 41, 66, 0.35);
+    border-radius: 0.375rem;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+}
+
+.btn-outline-primary {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+}
+
+.page-header {
+    border-bottom: 3px solid var(--color-accent);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.page-header h1 {
+    color: var(--color-primary);
+    font-weight: 700;
+    margin: 0;
+}
+
+.table thead th {
+    background-color: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary-dark);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(30, 58, 95, 0.06);
+}
+
+.flash-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.flash-error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.form-error {
+    color: #c0392b;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.hero-section {
+    padding: 3rem 1rem 2rem;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(139, 41, 66, 0.12);
+    color: var(--color-accent);
+    padding: 0.35rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.hero-title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    max-width: 540px;
+    margin: 0 auto 1rem;
+}
+
+.hero-cta {
+    padding: 0.65rem 1.75rem;
+    font-weight: 600;
+}
+
+.dashboard-card {
+    border: 1px solid var(--color-cream-dark);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: #fff;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.dashboard-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+}
+
+.genres-icon {
+    background: rgba(30, 58, 95, 0.12);
+    color: var(--color-primary);
+}
+
+.adherents-icon {
+    background: rgba(139, 41, 66, 0.12);
+    color: var(--color-accent);
+}
+
+.livres-icon {
+    background: rgba(30, 58, 95, 0.08);
+    color: var(--color-primary-dark);
+}
+
+.emprunts-icon {
+    background: rgba(139, 41, 66, 0.08);
+    color: var(--color-accent);
+}
+
+.dashboard-title {
+    font-size: 1.15rem;
+    color: var(--color-primary);
+    margin-bottom: 0.35rem;
+}
+
+.dashboard-desc {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        padding-top: 0.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-section {
+        padding-top: 2rem;
+    }
+
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+}

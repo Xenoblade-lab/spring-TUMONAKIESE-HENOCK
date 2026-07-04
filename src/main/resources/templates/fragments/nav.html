@@ -1,0 +1,40 @@
+<nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark mb-3 mb-md-4">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <i class="bi bi-building me-2"></i><span th:text="#{app.title}">App</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" th:attr="aria-label=#{nav.menu}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}" th:text="#{nav.home}"
+                       th:classappend="${navHome} ? ' active' : ''"
+                       th:attr="aria-current=${navHome} ? 'page' : null">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/genres}" th:text="#{nav.genres}"
+                       th:classappend="${navGenres} ? ' active' : ''"
+                       th:attr="aria-current=${navGenres} ? 'page' : null">Catégories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/adherents}" th:text="#{nav.adherents}"
+                       th:classappend="${navAdherents} ? ' active' : ''"
+                       th:attr="aria-current=${navAdherents} ? 'page' : null">Adherents</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/livres}" th:text="#{nav.livres}"
+                       th:classappend="${navLivres} ? ' active' : ''"
+                       th:attr="aria-current=${navLivres} ? 'page' : null">Livres</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/emprunts}" th:text="#{nav.emprunts}"
+                       th:classappend="${navEmprunts} ? ' active' : ''"
+                       th:attr="aria-current=${navEmprunts} ? 'page' : null">Emprunts</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
