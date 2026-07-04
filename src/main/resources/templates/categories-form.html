@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(#{nav.categories})}"></head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<main class="container pb-5">
+    <h1 class="page-header" th:text="${id} != null ? #{action.edit} : #{action.new}">Formulaire</h1>
+    <form th:action="@{/categories/save}" th:object="${form}" method="post" class="card card-body">
+        <input type="hidden" name="id" th:value="${id}"/>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.libelle}">Libellé</label>
+            <input class="form-control" th:field="*{libelle}" maxlength="45"/>
+            <div class="form-error" th:if="${#fields.hasErrors('libelle')}" th:errors="*{libelle}"></div>
+        </div>
+        <div class="d-grid gap-2 d-sm-flex">
+            <button class="btn btn-primary" type="submit" th:text="#{action.save}">Enregistrer</button>
+            <a class="btn btn-secondary" th:href="@{/categories}" th:text="#{action.cancel}">Annuler</a>
+        </div>
+    </form>
+</main>
+<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

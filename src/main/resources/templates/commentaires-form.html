@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(#{nav.commentaires})}"></head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<main class="container pb-5">
+    <h1 class="page-header" th:text="#{action.new}">Nouveau commentaire</h1>
+    <form th:action="@{/commentaires/save}" th:object="${form}" method="post" class="card card-body">
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.auteur}">Auteur</label>
+            <select class="form-select" th:field="*{auteurPk}">
+                <option th:each="c : ${auteurs}" th:value="${c.id}" th:text="${c.noms}"></option>
+            </select>
+            <div class="form-error" th:if="${#fields.hasErrors('auteurPk')}" th:errors="*{auteurPk}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.article}">Article</label>
+            <select class="form-select" th:field="*{articlePk}">
+                <option th:each="b : ${articles}" th:value="${b.id}"
+                        th:text="${b.titre + ' (' + b.vues + ' vues)'}"></option>
+            </select>
+            <div class="form-error" th:if="${#fields.hasErrors('articlePk')}" th:errors="*{articlePk}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.texte}">Commentaire</label>
+            <textarea class="form-control" rows="3" th:field="*{texte}"></textarea>
+            <div class="form-error" th:if="${#fields.hasErrors('texte')}" th:errors="*{texte}"></div>
+        </div>
+        <div class="d-grid gap-2 d-sm-flex">
+            <button class="btn btn-primary" type="submit" th:text="#{action.save}">Publier</button>
+            <a class="btn btn-secondary" th:href="@{/commentaires}" th:text="#{action.cancel}">Annuler</a>
+        </div>
+    </form>
+</main>
+<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

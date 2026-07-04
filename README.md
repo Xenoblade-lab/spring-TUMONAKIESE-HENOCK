@@ -1,6 +1,6 @@
-# Bibliothèque Municipale Henock — Tumonakiese Henock
+# Blog Henock — Tumonakiese Henock
 
-Application Spring Boot : gestion de bibliothèque (genres, adhérents, livres et emprunts) à Lubumbashi.
+Application Spring Boot : gestion de blog (catégories, auteurs, articles et commentaires).
 
 ## Prérequis
 
@@ -9,9 +9,7 @@ Application Spring Boot : gestion de bibliothèque (genres, adhérents, livres e
 
 ## Installation base de données
 
-Exécuter dans HeidiSQL ou MySQL :
-
-1. `sql/schema.sql` — crée la base `bibliotheque_henock_db`
+1. `sql/schema.sql` — crée la base `blog_henock_db`
 2. `sql/reset-data.sql` — données de démonstration
 
 ## Lancer l'application
@@ -23,12 +21,12 @@ Exécuter dans HeidiSQL ou MySQL :
 Interface : http://localhost:8081  
 API REST : http://localhost:8081/api/
 
-| Ressource  | Web              | API                   |
-|------------|------------------|-----------------------|
-| Genres     | `/genres`        | `/api/genres`         |
-| Adhérents  | `/adherents`     | `/api/adherents`      |
-| Livres     | `/livres`        | `/api/livres`         |
-| Emprunts   | `/emprunts`      | `/api/emprunts`       |
+| Ressource     | Web              | API                    |
+|---------------|------------------|------------------------|
+| Catégories    | `/categories`    | `/api/categories`      |
+| Auteurs       | `/auteurs`       | `/api/auteurs`         |
+| Articles      | `/articles`      | `/api/articles`        |
+| Commentaires  | `/commentaires`  | `/api/commentaires`    |
 
 ## Tests
 

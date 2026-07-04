@@ -33,10 +33,10 @@ class ApplicationIntegrationTest {
 	@Autowired
 	private MockMvc mockMvc;
 
-	private static Long genreId;
-	private static Long livreId;
-	private static Long adherentId;
-	private static Long empruntId;
+	private static Long categorieId;
+	private static Long articleId;
+	private static Long auteurId;
+	private static Long commentaireId;
 
 	private static String suffix;
 
@@ -53,103 +53,103 @@ class ApplicationIntegrationTest {
 
 	@Test
 	@Order(1)
-	void genresCrud() throws Exception {
-		mockMvc.perform(get("/api/genres"))
+	void categoriesCrud() throws Exception {
+		mockMvc.perform(get("/api/categories"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(3))));
 
-		MvcResult created = mockMvc.perform(post("/api/genres")
+		MvcResult created = mockMvc.perform(post("/api/categories")
 						.contentType(MediaType.APPLICATION_JSON)
-						.content("{\"libelle\":\"Test Genre API " + suffix + "\"}"))
+						.content("{\"libelle\":\"Test Categorie API " + suffix + "\"}"))
 				.andExpect(status().isCreated())
 				.andExpect(jsonPath("$.id").exists())
 				.andReturn();
 
-		genreId = readId(created);
+		categorieId = readId(created);
 
-		mockMvc.perform(get("/api/genres/" + genreId))
+		mockMvc.perform(get("/api/categories/" + categorieId))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.libelle").value("Test Genre API " + suffix));
+				.andExpect(jsonPath("$.libelle").value("Test Categorie API " + suffix));
 
-		mockMvc.perform(put("/api/genres/" + genreId)
+		mockMvc.perform(put("/api/categories/" + categorieId)
 						.contentType(MediaType.APPLICATION_JSON)
-						.content("{\"libelle\":\"Test Genre MAJ " + suffix + "\"}"))
+						.content("{\"libelle\":\"Test Categorie MAJ " + suffix + "\"}"))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.libelle").value("Test Genre MAJ " + suffix));
+				.andExpect(jsonPath("$.libelle").value("Test Categorie MAJ " + suffix));
 	}
 
 	@Test
 	@Order(2)
-	void livresApiStillWorks() throws Exception {
-		mockMvc.perform(get("/api/livres"))
+	void articlesApiStillWorks() throws Exception {
+		mockMvc.perform(get("/api/articles"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(3))));
 
-		MvcResult created = mockMvc.perform(post("/api/livres")
+		MvcResult created = mockMvc.perform(post("/api/articles")
 						.contentType(MediaType.APPLICATION_JSON)
-						.content("{\"titre\":\"Test Livre API " + suffix + "\",\"pages\":95}"))
+						.content("{\"titre\":\"Test Article API " + suffix + "\",\"vues\":95}"))
 				.andExpect(status().isCreated())
 				.andReturn();
 
-		livreId = readId(created);
+		articleId = readId(created);
 
-		mockMvc.perform(get("/api/livres/" + livreId))
+		mockMvc.perform(get("/api/articles/" + articleId))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.pages").value(95));
+				.andExpect(jsonPath("$.vues").value(95));
 	}
 
 	@Test
 	@Order(3)
-	void adherentsWithGenreJoin() throws Exception {
-		mockMvc.perform(get("/api/adherents"))
+	void auteursWithCategorieJoin() throws Exception {
+		mockMvc.perform(get("/api/auteurs"))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$[0].genre.libelle").exists());
+				.andExpect(jsonPath("$[0].categorie.libelle").exists());
 
-		mockMvc.perform(get("/api/adherents?keyword=Henock"))
+		mockMvc.perform(get("/api/auteurs?keyword=Henock"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$[0].noms").value("Tumonakiese Henock"))
-				.andExpect(jsonPath("$[0].genre.libelle").value("Roman"));
+				.andExpect(jsonPath("$[0].categorie.libelle").value("Technologie"));
 
-		MvcResult created = mockMvc.perform(post("/api/adherents")
+		MvcResult created = mockMvc.perform(post("/api/auteurs")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content("""
 								{
-								  "genrePk": 1,
-								  "noms": "Test Adherent API",
-								  "quartier": "Lubumbashi Katuba",
-								  "telephone": "+243 900 000 000",
-								  "quotaMax": 4
+								  "categoriePk": 1,
+								  "noms": "Test Auteur API",
+								  "ville": "Lubumbashi",
+								  "email": "test.auteur@blog.rdc",
+								  "experience": 4
 								}
 								"""))
 				.andExpect(status().isCreated())
-				.andExpect(jsonPath("$.genre.libelle").value("Roman"))
+				.andExpect(jsonPath("$.categorie.libelle").value("Technologie"))
 				.andReturn();
 
-		adherentId = readId(created);
+		auteurId = readId(created);
 
-		mockMvc.perform(get("/api/adherents/" + adherentId))
+		mockMvc.perform(get("/api/auteurs/" + auteurId))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.livres").isArray());
+				.andExpect(jsonPath("$.articles").isArray());
 	}
 
 	@Test
 	@Order(4)
-	void empruntEnrollment() throws Exception {
-		mockMvc.perform(get("/api/emprunts"))
+	void commentaireEnrollment() throws Exception {
+		mockMvc.perform(get("/api/commentaires"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(3))));
 
-		MvcResult created = mockMvc.perform(post("/api/emprunts")
+		MvcResult created = mockMvc.perform(post("/api/commentaires")
 						.contentType(MediaType.APPLICATION_JSON)
-						.content("{\"adherentPk\":" + adherentId + ",\"livrePk\":" + livreId + "}"))
+						.content("{\"auteurPk\":" + auteurId + ",\"articlePk\":" + articleId + ",\"texte\":\"Super article de test !\"}"))
 				.andExpect(status().isCreated())
-				.andExpect(jsonPath("$.adherent.noms").value("Test Adherent API"))
-				.andExpect(jsonPath("$.livre.titre").value("Test Livre API " + suffix))
+				.andExpect(jsonPath("$.auteur.noms").value("Test Auteur API"))
+				.andExpect(jsonPath("$.article.titre").value("Test Article API " + suffix))
 				.andReturn();
 
-		empruntId = readId(created);
+		commentaireId = readId(created);
 
-		mockMvc.perform(delete("/api/emprunts/" + empruntId))
+		mockMvc.perform(delete("/api/commentaires/" + commentaireId))
 				.andExpect(status().isOk());
 	}
 
@@ -159,19 +159,19 @@ class ApplicationIntegrationTest {
 		mockMvc.perform(get("/"))
 				.andExpect(status().isOk());
 
-		mockMvc.perform(get("/genres"))
+		mockMvc.perform(get("/categories"))
 				.andExpect(status().isOk());
 
-		mockMvc.perform(get("/livres"))
+		mockMvc.perform(get("/articles"))
 				.andExpect(status().isOk());
 
-		mockMvc.perform(get("/adherents"))
+		mockMvc.perform(get("/auteurs"))
 				.andExpect(status().isOk());
 
-		mockMvc.perform(get("/adherents?keyword=Henock"))
+		mockMvc.perform(get("/auteurs?keyword=Henock"))
 				.andExpect(status().isOk());
 
-		mockMvc.perform(get("/emprunts"))
+		mockMvc.perform(get("/commentaires"))
 				.andExpect(status().isOk());
 	}
 
@@ -181,21 +181,21 @@ class ApplicationIntegrationTest {
 	}
 
 	private void cleanupCreatedEntities() throws Exception {
-		if (empruntId != null) {
-			mockMvc.perform(delete("/api/emprunts/" + empruntId));
-			empruntId = null;
+		if (commentaireId != null) {
+			mockMvc.perform(delete("/api/commentaires/" + commentaireId));
+			commentaireId = null;
 		}
-		if (adherentId != null) {
-			mockMvc.perform(delete("/api/adherents/" + adherentId));
-			adherentId = null;
+		if (auteurId != null) {
+			mockMvc.perform(delete("/api/auteurs/" + auteurId));
+			auteurId = null;
 		}
-		if (livreId != null) {
-			mockMvc.perform(delete("/api/livres/" + livreId));
-			livreId = null;
+		if (articleId != null) {
+			mockMvc.perform(delete("/api/articles/" + articleId));
+			articleId = null;
 		}
-		if (genreId != null) {
-			mockMvc.perform(delete("/api/genres/" + genreId));
-			genreId = null;
+		if (categorieId != null) {
+			mockMvc.perform(delete("/api/categories/" + categorieId));
+			categorieId = null;
 		}
 	}
 

@@ -1,35 +1,32 @@
-USE bibliotheque_henock_db;
+USE blog_henock_db;
 
--- Jeu de données de démonstration — Bibliothèque Municipale Henock (Lubumbashi)
-
-INSERT INTO genres (libelle) VALUES
-('Roman'),
-('Science-fiction'),
-('Histoire'),
-('Jeunesse'),
-('Philosophie')
+INSERT INTO categories (libelle) VALUES
+('Technologie'),
+('Voyage'),
+('Culture'),
+('Sport'),
+('Cuisine')
 ON DUPLICATE KEY UPDATE libelle = VALUES(libelle);
 
-INSERT INTO livres (titre, pages) VALUES
-('Les Misérables', 1463),
-('Dune', 688),
-('Congo : une histoire', 512),
-('Le Petit Prince', 96),
-('Discours de la méthode', 128)
-ON DUPLICATE KEY UPDATE pages = VALUES(pages);
+INSERT INTO articles (titre, vues) VALUES
+('Spring Boot en 2026 : par où commencer ?', 1240),
+('Lubumbashi vu du ciel : carnet de route', 890),
+('Les 5 plats congolais à absolument goûter', 2100),
+('Running au stade TP Mazembe : mon retour', 560),
+('Comment lancer un blog avec Thymeleaf', 430)
+ON DUPLICATE KEY UPDATE vues = VALUES(vues);
 
-INSERT INTO adherents (genre_pk, noms, quartier, telephone, quota_max) VALUES
-(1, 'Tumonakiese Henock', 'Lubumbashi Katuba', '+243 999 000 001', 5),
-(2, 'Mukendi Grace', 'Lubumbashi Kenya', '+243 810 234 567', 4),
-(1, 'Kabila Jean-Pierre', 'Lubumbashi Kamalondo', '+243 820 111 222', 6),
-(3, 'Tshimanga Sarah', 'Lubumbashi Lubumbashi Centre', '+243 970 333 444', 3),
-(4, 'Mbuyi Paul', 'Lubumbashi Golf', '+243 991 555 666', 4);
+INSERT INTO auteurs (categorie_pk, noms, ville, email, experience) VALUES
+(1, 'Tumonakiese Henock', 'Lubumbashi', 'henock.tumonakiese@blog.rdc', 3),
+(2, 'Mukendi Grace', 'Kinshasa', 'grace.mukendi@blog.rdc', 5),
+(1, 'Kabila Jean-Pierre', 'Goma', 'jp.kabila@blog.rdc', 2),
+(3, 'Tshimanga Sarah', 'Bukavu', 'sarah.tshimanga@blog.rdc', 4),
+(5, 'Mbuyi Paul', 'Kolwezi', 'paul.mbuyi@blog.rdc', 1);
 
-INSERT INTO emprunts (adherent_pk, livre_pk) VALUES
-(1, 1),
-(1, 2),
-(1, 4),
-(2, 2),
-(3, 4),
-(4, 3),
-(5, 1);
+INSERT INTO commentaires (auteur_pk, article_pk, texte) VALUES
+(1, 1, 'Article très clair, merci pour les exemples Spring !'),
+(1, 5, 'Exactement ce qu il me fallait pour mon projet.'),
+(2, 2, 'Magnifiques photos, j ai envie de visiter Lubumbashi.'),
+(3, 1, 'La partie JdbcClient m a beaucoup aidé.'),
+(4, 3, 'Le pondu décrit ici est irresistible.'),
+(5, 4, 'Belle motivation pour reprendre le sport !');

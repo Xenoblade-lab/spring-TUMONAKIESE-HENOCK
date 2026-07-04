@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(#{nav.auteurs})}"></head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<main class="container pb-5">
+    <h1 class="page-header" th:text="${id} != null ? #{action.edit} : #{action.new}">Formulaire</h1>
+    <form th:action="@{/auteurs/save}" th:object="${form}" method="post" class="card card-body">
+        <input type="hidden" name="id" th:value="${id}"/>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.categorie}">Catégorie</label>
+            <select class="form-select" th:field="*{categoriePk}">
+                <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.libelle}"></option>
+            </select>
+            <div class="form-error" th:if="${#fields.hasErrors('categoriePk')}" th:errors="*{categoriePk}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.noms}">Noms</label>
+            <input class="form-control" th:field="*{noms}" maxlength="100"/>
+            <div class="form-error" th:if="${#fields.hasErrors('noms')}" th:errors="*{noms}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.ville}">Ville</label>
+            <input class="form-control" th:field="*{ville}" maxlength="45"/>
+            <div class="form-error" th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.email}">Téléphone</label>
+            <input class="form-control" th:field="*{email}" maxlength="80"/>
+            <div class="form-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{label.experience}">Budget</label>
+            <input class="form-control" type="number" th:field="*{experience}" min="1"/>
+            <div class="form-error" th:if="${#fields.hasErrors('experience')}" th:errors="*{experience}"></div>
+        </div>
+        <div class="d-grid gap-2 d-sm-flex">
+            <button class="btn btn-primary" type="submit" th:text="#{action.save}">Enregistrer</button>
+            <a class="btn btn-secondary" th:href="@{/auteurs}" th:text="#{action.cancel}">Annuler</a>
+        </div>
+    </form>
+</main>
+<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

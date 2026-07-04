@@ -1,7 +1,7 @@
 <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark mb-3 mb-md-4">
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">
-            <i class="bi bi-building me-2"></i><span th:text="#{app.title}">App</span>
+            <i class="bi bi-journal-richtext me-2"></i><span th:text="#{app.title}">App</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
                 aria-controls="mainNavbar" aria-expanded="false" th:attr="aria-label=#{nav.menu}">
@@ -15,24 +15,24 @@
                        th:attr="aria-current=${navHome} ? 'page' : null">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/genres}" th:text="#{nav.genres}"
-                       th:classappend="${navGenres} ? ' active' : ''"
-                       th:attr="aria-current=${navGenres} ? 'page' : null">Catégories</a>
+                    <a class="nav-link" th:href="@{/categories}" th:text="#{nav.categories}"
+                       th:classappend="${navCategories} ? ' active' : ''"
+                       th:attr="aria-current=${navCategories} ? 'page' : null">Catégories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/adherents}" th:text="#{nav.adherents}"
-                       th:classappend="${navAdherents} ? ' active' : ''"
-                       th:attr="aria-current=${navAdherents} ? 'page' : null">Adherents</a>
+                    <a class="nav-link" th:href="@{/auteurs}" th:text="#{nav.auteurs}"
+                       th:classappend="${navAuteurs} ? ' active' : ''"
+                       th:attr="aria-current=${navAuteurs} ? 'page' : null">Auteurs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/livres}" th:text="#{nav.livres}"
-                       th:classappend="${navLivres} ? ' active' : ''"
-                       th:attr="aria-current=${navLivres} ? 'page' : null">Livres</a>
+                    <a class="nav-link" th:href="@{/articles}" th:text="#{nav.articles}"
+                       th:classappend="${navArticles} ? ' active' : ''"
+                       th:attr="aria-current=${navArticles} ? 'page' : null">Articles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/emprunts}" th:text="#{nav.emprunts}"
-                       th:classappend="${navEmprunts} ? ' active' : ''"
-                       th:attr="aria-current=${navEmprunts} ? 'page' : null">Emprunts</a>
+                    <a class="nav-link" th:href="@{/commentaires}" th:text="#{nav.commentaires}"
+                       th:classappend="${navCommentaires} ? ' active' : ''"
+                       th:attr="aria-current=${navCommentaires} ? 'page' : null">Commentaires</a>
                 </li>
             </ul>
         </div>

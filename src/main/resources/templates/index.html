@@ -8,57 +8,57 @@
 
     <section class="hero-section text-center mb-5">
         <div class="hero-badge mb-3">
-            <i class="bi bi-geo-alt-fill me-1"></i> Lubumbashi, RDC
+            <i class="bi bi-pencil-square me-1"></i> Blog personnel
         </div>
-        <h1 class="hero-title" th:text="#{home.welcome}">Livrevenue</h1>
+        <h1 class="hero-title" th:text="#{home.welcome}">Blog Henock</h1>
         <p class="hero-subtitle" th:text="#{home.subtitle}">Sous-titre</p>
-        <a class="btn btn-primary btn-lg hero-cta mt-2" th:href="@{/livres}">
-            <i class="bi bi-book me-2"></i><span th:text="#{home.hero.cta}">Parcourir</span>
+        <a class="btn btn-primary btn-lg hero-cta mt-2" th:href="@{/articles}">
+            <i class="bi bi-journal-richtext me-2"></i><span th:text="#{home.hero.cta}">Lire</span>
         </a>
     </section>
 
     <div class="row g-4">
         <div class="col-12 col-sm-6 col-lg-3">
-            <a class="dashboard-card card h-100 text-decoration-none" th:href="@{/genres}">
+            <a class="dashboard-card card h-100 text-decoration-none" th:href="@{/categories}">
                 <div class="card-body">
-                    <div class="dashboard-icon genres-icon">
-                        <i class="bi bi-tags"></i>
+                    <div class="dashboard-icon categories-icon">
+                        <i class="bi bi-bookmark-star"></i>
                     </div>
-                    <h2 class="dashboard-title" th:text="#{nav.genres}">Catégories</h2>
-                    <p class="dashboard-desc" th:text="#{card.genres.desc}">Types de livres</p>
+                    <h2 class="dashboard-title" th:text="#{nav.categories}">Catégories</h2>
+                    <p class="dashboard-desc" th:text="#{card.categories.desc}">Thèmes</p>
                 </div>
             </a>
         </div>
         <div class="col-12 col-sm-6 col-lg-3">
-            <a class="dashboard-card card h-100 text-decoration-none" th:href="@{/adherents}">
+            <a class="dashboard-card card h-100 text-decoration-none" th:href="@{/auteurs}">
                 <div class="card-body">
-                    <div class="dashboard-icon adherents-icon">
-                        <i class="bi bi-people"></i>
+                    <div class="dashboard-icon auteurs-icon">
+                        <i class="bi bi-person-badge"></i>
                     </div>
-                    <h2 class="dashboard-title" th:text="#{nav.adherents}">Adherents</h2>
-                    <p class="dashboard-desc" th:text="#{card.adherents.desc}">Acheteurs</p>
+                    <h2 class="dashboard-title" th:text="#{nav.auteurs}">Auteurs</h2>
+                    <p class="dashboard-desc" th:text="#{card.auteurs.desc}">Rédacteurs</p>
                 </div>
             </a>
         </div>
         <div class="col-12 col-sm-6 col-lg-3">
-            <a class="dashboard-card card h-100 text-decoration-none" th:href="@{/livres}">
+            <a class="dashboard-card card h-100 text-decoration-none" th:href="@{/articles}">
                 <div class="card-body">
-                    <div class="dashboard-icon livres-icon">
-                        <i class="bi bi-book"></i>
+                    <div class="dashboard-icon articles-icon">
+                        <i class="bi bi-file-earmark-text"></i>
                     </div>
-                    <h2 class="dashboard-title" th:text="#{nav.livres}">Livres</h2>
-                    <p class="dashboard-desc" th:text="#{card.livres.desc}">Propriétés</p>
+                    <h2 class="dashboard-title" th:text="#{nav.articles}">Articles</h2>
+                    <p class="dashboard-desc" th:text="#{card.articles.desc}">Publications</p>
                 </div>
             </a>
         </div>
         <div class="col-12 col-sm-6 col-lg-3">
-            <a class="dashboard-card card h-100 text-decoration-none" th:href="@{/emprunts}">
+            <a class="dashboard-card card h-100 text-decoration-none" th:href="@{/commentaires}">
                 <div class="card-body">
-                    <div class="dashboard-icon emprunts-icon">
-                        <i class="bi bi-calendar-check"></i>
+                    <div class="dashboard-icon commentaires-icon">
+                        <i class="bi bi-chat-dots"></i>
                     </div>
-                    <h2 class="dashboard-title" th:text="#{nav.emprunts}">Emprunts</h2>
-                    <p class="dashboard-desc" th:text="#{card.emprunts.desc}">Planification</p>
+                    <h2 class="dashboard-title" th:text="#{nav.commentaires}">Commentaires</h2>
+                    <p class="dashboard-desc" th:text="#{card.commentaires.desc}">Lecteurs</p>
                 </div>
             </a>
         </div>

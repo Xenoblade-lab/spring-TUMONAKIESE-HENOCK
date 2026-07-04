@@ -1,8 +1,5 @@
--- Corrige les accents si MySQL affiche des ? au lieu de é, è, à…
-USE bibliotheque_henock_db;
+USE blog_henock_db;
 SET NAMES utf8mb4;
 
-UPDATE livres SET titre = 'Les Misérables' WHERE titre LIKE 'Les Mis%';
-UPDATE livres SET titre = 'Congo : une histoire' WHERE titre LIKE 'Congo%';
-UPDATE livres SET titre = 'Discours de la méthode' WHERE titre LIKE 'Discours%';
-UPDATE adherents SET quartier = 'Lubumbashi Katuba' WHERE noms = 'Tumonakiese Henock';
+UPDATE articles SET titre = 'Les 5 plats congolais à absolument goûter' WHERE id = 3;
+UPDATE commentaires SET texte = 'Article très clair, merci pour les exemples Spring !' WHERE auteur_pk = 1 AND article_pk = 1;

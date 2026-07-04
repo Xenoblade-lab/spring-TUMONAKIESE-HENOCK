@@ -13,25 +13,25 @@ public class NavModelAdvice {
 		return "/".equals(request.getRequestURI());
 	}
 
-	@ModelAttribute("navGenres")
-	public boolean navGenres(HttpServletRequest request) {
-		return request.getRequestURI().startsWith("/genres");
+	@ModelAttribute("navCategories")
+	public boolean navCategories(HttpServletRequest request) {
+		return request.getRequestURI().startsWith("/categories");
 	}
 
-	@ModelAttribute("navAdherents")
-	public boolean navAdherents(HttpServletRequest request) {
+	@ModelAttribute("navAuteurs")
+	public boolean navAuteurs(HttpServletRequest request) {
 		String path = request.getRequestURI();
-		return path.startsWith("/adherents") && !path.startsWith("/adherents-");
+		return path.startsWith("/auteurs") && !path.startsWith("/auteurs-");
 	}
 
-	@ModelAttribute("navLivres")
-	public boolean navLivres(HttpServletRequest request) {
-		return request.getRequestURI().startsWith("/livres");
+	@ModelAttribute("navArticles")
+	public boolean navArticles(HttpServletRequest request) {
+		return request.getRequestURI().startsWith("/articles");
 	}
 
-	@ModelAttribute("navEmprunts")
-	public boolean navEmprunts(HttpServletRequest request) {
-		return request.getRequestURI().startsWith("/emprunts");
+	@ModelAttribute("navCommentaires")
+	public boolean navCommentaires(HttpServletRequest request) {
+		return request.getRequestURI().startsWith("/commentaires");
 	}
 
 }

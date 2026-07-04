@@ -2,65 +2,67 @@ package edu.upc.utils;
 
 import org.springframework.stereotype.Component;
 
-import edu.upc.models.Livre;
-import edu.upc.models.Genre;
-import edu.upc.models.Adherent;
-import edu.upc.models.Emprunt;
-import edu.upc.models.dtos.LivreDto;
-import edu.upc.models.dtos.GenreDto;
-import edu.upc.models.dtos.AdherentDto;
-import edu.upc.models.dtos.EmpruntDto;
+import edu.upc.models.Article;
+import edu.upc.models.Categorie;
+import edu.upc.models.Auteur;
+import edu.upc.models.Commentaire;
+import edu.upc.models.dtos.ArticleDto;
+import edu.upc.models.dtos.CategorieDto;
+import edu.upc.models.dtos.AuteurDto;
+import edu.upc.models.dtos.CommentaireDto;
 
 @Component
 public class Mapper {
 
-	public Livre mapToLivre(LivreDto dto) {
-		return Livre.builder().titre(dto.getTitre()).pages(dto.getPages()).build();
+	public Article mapToArticle(ArticleDto dto) {
+		return Article.builder().titre(dto.getTitre()).vues(dto.getVues()).build();
 	}
 
-	public Genre mapToGenre(GenreDto dto) {
-		return Genre.builder().libelle(dto.getLibelle()).build();
+	public Categorie mapToCategorie(CategorieDto dto) {
+		return Categorie.builder().libelle(dto.getLibelle()).build();
 	}
 
-	public Adherent mapToAdherent(AdherentDto dto) {
-		return Adherent.builder()
-				.genrePk(dto.getGenrePk())
+	public Auteur mapToAuteur(AuteurDto dto) {
+		return Auteur.builder()
+				.categoriePk(dto.getCategoriePk())
 				.noms(dto.getNoms())
-				.quartier(dto.getQuartier())
-				.telephone(dto.getTelephone())
-				.quotaMax(dto.getQuotaMax())
+				.ville(dto.getVille())
+				.email(dto.getEmail())
+				.experience(dto.getExperience())
 				.build();
 	}
 
-	public Emprunt mapToEmprunt(EmpruntDto dto) {
-		return Emprunt.builder()
-				.adherentPk(dto.getAdherentPk())
-				.livrePk(dto.getLivrePk())
+	public Commentaire mapToCommentaire(CommentaireDto dto) {
+		return Commentaire.builder()
+				.auteurPk(dto.getAuteurPk())
+				.articlePk(dto.getArticlePk())
+				.texte(dto.getTexte())
 				.build();
 	}
 
-	public GenreDto toGenreDto(Genre entity) {
-		return GenreDto.builder().libelle(entity.getLibelle()).build();
+	public CategorieDto toCategorieDto(Categorie entity) {
+		return CategorieDto.builder().libelle(entity.getLibelle()).build();
 	}
 
-	public LivreDto toLivreDto(Livre entity) {
-		return LivreDto.builder().titre(entity.getTitre()).pages(entity.getPages()).build();
+	public ArticleDto toArticleDto(Article entity) {
+		return ArticleDto.builder().titre(entity.getTitre()).vues(entity.getVues()).build();
 	}
 
-	public AdherentDto toAdherentDto(Adherent entity) {
-		return AdherentDto.builder()
-				.genrePk(entity.getGenrePk())
+	public AuteurDto toAuteurDto(Auteur entity) {
+		return AuteurDto.builder()
+				.categoriePk(entity.getCategoriePk())
 				.noms(entity.getNoms())
-				.quartier(entity.getQuartier())
-				.telephone(entity.getTelephone())
-				.quotaMax(entity.getQuotaMax())
+				.ville(entity.getVille())
+				.email(entity.getEmail())
+				.experience(entity.getExperience())
 				.build();
 	}
 
-	public EmpruntDto toEmpruntDto(Emprunt entity) {
-		return EmpruntDto.builder()
-				.adherentPk(entity.getAdherentPk())
-				.livrePk(entity.getLivrePk())
+	public CommentaireDto toCommentaireDto(Commentaire entity) {
+		return CommentaireDto.builder()
+				.auteurPk(entity.getAuteurPk())
+				.articlePk(entity.getArticlePk())
+				.texte(entity.getTexte())
 				.build();
 	}
 
