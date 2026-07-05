@@ -2,7 +2,8 @@
 
 Application Spring Boot : gestion de blog (catégories, auteurs, articles et commentaires).
 
-**Documentation complète** : [`GUIDE-PROJET.md`](GUIDE-PROJET.md) · [`GUIDE-PROJET.pdf`](GUIDE-PROJET.pdf) (architecture, conception, Spring, SQL).
+**Documentation complète** : [`GUIDE-PROJET.md`](GUIDE-PROJET.md) · [`GUIDE-PROJET.pdf`](GUIDE-PROJET.pdf)  
+**Installation sur une autre machine** : [`GUIDE-INSTALLATION.md`](GUIDE-INSTALLATION.md)
 
 ## Prérequis
 
